@@ -39,10 +39,10 @@
             fetch("https://script.google.com/macros/s/AKfycbwuCO9wbRX15S1exUQSjBSJxVc8XOskj6RSYxxaGffODIQxvsCg59EcXtqPsW0Kxddo/exec", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              body: { "uid": uid }
+              body: ({ "uid": uid })
             })
               .then(() => alert("已記錄到 Google Sheet"))
-              .catch((err) => alert("錯誤：" + err + JSON.stringify({ "uid": uid })));
+              .catch((err) => alert("錯誤：" + err );
           };
         } catch (error) {
           alert("NFC 掃描失敗：" + error );
