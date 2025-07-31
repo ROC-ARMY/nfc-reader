@@ -42,10 +42,10 @@
               body: JSON.stringify({ "uid": uid })
             })
               .then(() => alert("已記錄到 Google Sheet"))
-              .catch((err) => alert("錯誤：" + err));
+              .catch((err) => alert("錯誤：" + err + JSON.stringify({ "uid": uid })));
           };
         } catch (error) {
-          alert("NFC 掃描失敗：" + error + JSON.stringify({ "uid": uid }));
+          alert("NFC 掃描失敗：" + error );
         }
       } else {
         alert("此瀏覽器不支援 Web NFC（請用 Android Chrome）");
