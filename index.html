@@ -76,8 +76,9 @@
             lastReadTime = now;
             document.getElementById("status").textContent = "讀取成功，UID: " + uid;
 
-            fetch( "https://script.google.com/macros/s/AKfycbwuCO9wbRX15S1exUQSjBSJxVc8XOskj6RSYxxaGffODIQxvsCg59EcXtqPsW0Kxddo/exec", {
+            fetch( scriptURL, {
               method: "POST",
+              mode: "no-cors", // 先測試
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ "uid":uid })
             })
