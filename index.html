@@ -12,7 +12,9 @@
 
   <script>
     const scriptURL = "https://script.google.com/macros/s/AKfycbwuCO9wbRX15S1exUQSjBSJxVc8XOskj6RSYxxaGffODIQxvsCg59EcXtqPsW0Kxddo/exec"; // 換成你的 GAS URL
-
+    let lastUID = null;
+    let lastReadTime = 0;
+    const debounceTime = 3000; // 3 秒內不重複送出
     document.getElementById("scanBtn").addEventListener("click", async () => {
       if ("NDEFReader" in window) {
         try {
@@ -22,7 +24,12 @@
 
           reader.onreading = (event) => {
             const uid = event.serialNumber;
-            document.getElementById("status").textContent = "讀取成功，UID: " + uid;
+            const now = Date.now();
+
+            // 防止短時間重複讀取同一張卡
+            if (uid === lastUID && (now - lastReadTime) < debounceTime) {
+              return;
+            }
 
             fetch("https://script.google.com/macros/s/AKfycbwuCO9wbRX15S1exUQSjBSJxVc8XOskj6RSYxxaGffODIQxvsCg59EcXtqPsW0Kxddo/exec", {
               method: "POST",
