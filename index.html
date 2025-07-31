@@ -103,8 +103,9 @@
 
             fetch( "https://script.google.com/macros/s/AKfycbwuCO9wbRX15S1exUQSjBSJxVc8XOskj6RSYxxaGffODIQxvsCg59EcXtqPsW0Kxddo/exec", {
               method: "POST",
+              mode: "no-cors", // 先測試
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ "uid":uid })
+              body: JSON.stringify({ "uid" : uid })
             })
               .then(() => console.log("已記錄到 Google Sheet"))
               .catch((err) => alert("錯誤：" + err));
