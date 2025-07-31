@@ -44,11 +44,14 @@
               .then(() => alert("已記錄到 Google Sheet"))
               .catch((err) => alert("錯誤：" + err));
           };
+          return;
         } catch (error) {
           alert("NFC 掃描失敗：" + error);
+          return;
         }
       } else {
         alert("此瀏覽器不支援 Web NFC（請用 Android Chrome）");
+        return;
       }
     });
   </script>
