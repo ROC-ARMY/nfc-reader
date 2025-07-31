@@ -107,10 +107,10 @@
               body: JSON.stringify({ "uid":uid })
             })
               .then(() => console.log("已記錄到 Google Sheet"))
-              .catch((err) => setStatus("寫入錯誤 ❌", "error"));
+              .catch((err) => alert("錯誤：" + err));
           };
         } catch (error) {
-          setStatus("NFC 掃描失敗 ❌", "error");
+          alert("NFC 掃描失敗：" + error);
         }
       } else {
         alert("此瀏覽器不支援 Web NFC（請用 Android Chrome）");
