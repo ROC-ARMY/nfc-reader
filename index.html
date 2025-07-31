@@ -27,7 +27,7 @@
             fetch(scriptURL, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ "uid":uid })
+              body: ({ "uid":uid })
             })
               .then(() => alert("已記錄到 Google Sheet"))
               .catch((err) => alert("錯誤：" + err));
