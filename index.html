@@ -104,18 +104,18 @@
 
             fetch( "https://script.google.com/macros/s/AKfycbwuCO9wbRX15S1exUQSjBSJxVc8XOskj6RSYxxaGffODIQxvsCg59EcXtqPsW0Kxddo/exec", {
               method: "POST",
-              mode: "no-cors", // 先測試
+              //mode: "no-cors", // 先測試
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ "uid" : uid })
             })
             .then(data => {
               if (data.status === "success") {
                 document.getElementById("status").textContent = "寫入成功 ✅";
-                document.getElementById("status").className = "status success";
+                //document.getElementById("status").className = "status success";
                 document.getElementById("gap").className = data.uid;
               } else {
                 document.getElementById("status").textContent = "寫入失敗 ❌";
-                document.getElementById("status").className = "status error";
+                //document.getElementById("status").className = "status error";
               }
             })
             .catch(err => {
