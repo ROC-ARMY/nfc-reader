@@ -108,9 +108,10 @@
             document.getElementById("uid").textContent =  uid;
 
             fetch( "https://script.google.com/macros/s/AKfycbwuCO9wbRX15S1exUQSjBSJxVc8XOskj6RSYxxaGffODIQxvsCg59EcXtqPsW0Kxddo/exec", {
-            mode: "no-cors",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ uid })
+              method: "POST",
+              mode: "no-cors", // 先測試
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ "uid" : uid })
             })
             .then(data => {
               if (data.status === "success") {
