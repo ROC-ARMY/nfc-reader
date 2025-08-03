@@ -92,7 +92,7 @@
   <script>
     let lastUID = null;
     let lastReadTime = 0;
-    const debounceTime = 3000; // 3 秒內不重複送出
+    const debounceTime = 5000; // 3 秒內不重複送出
     document.getElementById("scanBtn").addEventListener("click", async () => {
       if ("NDEFReader" in window) {
         try {
