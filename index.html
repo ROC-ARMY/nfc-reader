@@ -79,7 +79,7 @@
   <script>
     let lastUID = null;
     let lastReadTime = 0;
-    const debounceTime = 5000; // 3 秒內不重複送出
+    const debounceTime = 3000; // 3 秒內不重複送出
     document.getElementById("scanBtn").addEventListener("click", async () => {
       if ("NDEFReader" in window) {
         try {
@@ -103,7 +103,7 @@
 
             fetch( "https://script.google.com/macros/s/AKfycbwuCO9wbRX15S1exUQSjBSJxVc8XOskj6RSYxxaGffODIQxvsCg59EcXtqPsW0Kxddo/exec", {
               method: "POST",
-              //mode: "no-cors", // 先測試
+              mode: "no-cors", // 先測試
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ "uid" : uid })
             })
@@ -122,10 +122,11 @@
               document.getElementById("status").textContent = "網路錯誤 ❌";
               document.getElementById("status").className = "status error";
             });
+          };
         } catch (error) {
           alert("NFC 掃描失敗：" + error);
         }
-        }} else {
+      } else {
         alert("此瀏覽器不支援 Web NFC（請用 Android Chrome）");
       }
     });
