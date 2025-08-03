@@ -89,16 +89,6 @@
     <span id="status" class="status waiting">尚未開始掃描</span>
     <span id="uid" class="uid">UID</span>
   </div>
-    <h2>Google Sheet 最新 5 筆資料</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>時間</th>
-        <th>UID</th>
-      </tr>
-    </thead>
-    <tbody id="data"></tbody>
-  </table>
   <script>
     let lastUID = null;
     let lastReadTime = 0;
@@ -133,23 +123,6 @@
               .then(() => alert("紀錄成功"))
               .catch((err) => alert("錯誤：" + err));
           };
-              fetch("https://docs.google.com/spreadsheets/d/1ziATIungYLhRiL5HjSUnfgm1LMQbuPFrYVp2i1kNzgI/edit?gid=23196697#gid=23196697")
-              .then(res => res.text())
-              .then(text => {
-                const json = JSON.parse(text.substr(47).slice(0, -2));
-                const rows = json.table.rows.map(r => r.c.map(c => c?.v));
-        
-                // 取最後 5 筆資料，倒序顯示（最新在上）
-                const latest5 = rows.slice(-5).reverse();
-        
-                const tbody = document.getElementById("data");
-                latest5.forEach(row => {
-                  const tr = document.createElement("tr");
-                  tr.innerHTML = `<td>${row[0]}</td><td>${row[1]}</td>`;
-                  tbody.appendChild(tr);
-                });
-              })
-              .catch(err => console.error("讀取錯誤", err));
         } catch (error) {
           alert("NFC 掃描失敗：" + error);
         }
