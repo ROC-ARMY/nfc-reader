@@ -79,7 +79,7 @@
   <div class="info-container">
     <span id="status" class="status waiting">尚未開始掃描</span>
     <span id="uid" class="uid">UID</span>
-    <span id="gap" class="gap"></span>
+    <span id="gap" class="gap">訊息</span>
   </div>
   <script>
     let lastUID = null;
@@ -90,9 +90,10 @@
         try {
           const reader = new NDEFReader();
           await reader.scan();
-         document.getElementById("status").textContent = "等待感應卡片...";
+          document.getElementById("status").textContent = "等待感應卡片...";
           document.getElementById("uid").textContent = "-";
-
+          document.getElementById("gap").textContent = "-";
+          
           reader.onreading = (event) => {
             const uid = event.serialNumber;
             const now = Date.now();
