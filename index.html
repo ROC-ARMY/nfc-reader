@@ -106,11 +106,10 @@
             lastReadTime = now;
             document.getElementById("status").textContent = "讀取成功 ✅UID: ";
             document.getElementById("uid").textContent =  uid;
-            const formData = new FormData();
-            formData.append("uid", uid);
+
             fetch( "https://script.google.com/macros/s/AKfycbwuCO9wbRX15S1exUQSjBSJxVc8XOskj6RSYxxaGffODIQxvsCg59EcXtqPsW0Kxddo/exec", {
-              method: "POST",
-              body: formData
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ uid })
             })
             .then(data => {
               if (data.status === "success") {
